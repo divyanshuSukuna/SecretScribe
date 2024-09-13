@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecretScribe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="w-full min-h-screen bg-zinc-900 p-10 text-white">
+        <h1 class="text-3xl mb-5">Upload Your Profile Picture</h1>
+        <form action="/profile/upload" method="post" enctype="multipart/form-data"> 
+            <input class="px-3 py-2 bg-zinc-800 bg-transparent rounded-md border-zinc-700"  type="file"  name="profilepic">
+            <input class="px-5 py-2 bg-blue-500 border-2 rounded-md border-zinc-700"  type="submit" value="Create Account">
+        </form>
+    </div>
+</body>
+</html>
