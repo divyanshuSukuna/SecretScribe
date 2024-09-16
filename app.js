@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose')
+require('dotenv').config();
 
 const userModel = require('./models/user');
 const postModel = require('./models/post')
@@ -18,7 +19,15 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname , 'public')));
 
 //////////////////////////////////Here is your MONGODB URI//////////////////////////////////////////////////////////////
-mongoose.connect(`mongodb://127.0.0.1:27017/miniproject1`);
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }).then(() => {
+    console.log('Connected to MongoDB');
+  }).catch((err) => {
+    console.error('Error connecting to MongoDB:', err.message);
+  });
+
 //////////////////////////////////Here is your MONGODB URI//////////////////////////////////////////////////////////////
 
 app.get('/home', async (req, res) => {
@@ -167,7 +176,9 @@ app.post('/profile/upload', isLoggedIn, upload.single('profilepic'),async functi
     res.redirect('/profile');
 })
 
-app.listen(3000, ()=>{
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, ()=>{
     console.log("Server is listening");
 })
 
